@@ -20,6 +20,14 @@ if errorlevel 1 (
   exit /b 0
 )
 
+echo.
+git pull --rebase origin main
+if errorlevel 1 (
+  echo Pull/rebase failed. Fix conflicts or run: git rebase --abort
+  pause
+  exit /b 1
+)
+
 git push origin main
 if errorlevel 1 (
   echo Push failed.
