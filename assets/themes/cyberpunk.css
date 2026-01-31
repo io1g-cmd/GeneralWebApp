@@ -1,0 +1,39 @@
+:root{
+  --bg:#0a0514;
+  --surface:rgba(255,255,255,0.04);
+  --surface2:rgba(255,255,255,0.06);
+  --text:#ff00ff;
+  --muted:rgba(255,0,255,0.7);
+  --border:rgba(255,0,255,0.3);
+  --accent:#ff00ff;
+  --accent2:#00ffff;
+  --accent-strong:rgba(255,0,255,0.95);
+  --accent-soft:rgba(255,0,255,0.18);
+  --bg-grad-1:rgba(255,0,255,0.25);
+  --bg-grad-2:rgba(0,255,255,0.2);
+  --accent-shadow:rgba(255,0,255,0.5);
+  --grid-opacity:0.2;
+  --grid-color:rgba(255,0,255,0.12);
+  --chrome-top:rgba(10,5,20,0.96);
+  --chrome-bottom:rgba(10,5,20,0.88);
+  --editor-bg:rgba(10,5,20,0.65);
+  --editor-text:var(--text);
+  --editor-toolbar-bg:rgba(255,255,255,0.04);
+  --popover-bg:rgba(10,5,20,0.98);
+  --actions-bg:rgba(10,5,20,0.8);
+  --page-bg:rgba(10,5,20,0.75);
+  --page-shadow:0 0 50px rgba(255,0,255,0.3);
+  --danger:#ff0066;
+  --ok:#00ff88;
+  --shadow:0 0 40px rgba(255,0,255,0.2);
+  --radius:12px;
+}
+body::before{background-size:40px 40px;}
+.panel{border:2px solid var(--border);box-shadow:0 0 30px rgba(255,0,255,0.2),inset 0 0 20px rgba(0,255,255,0.05);}
+.btn{border:1px solid var(--border);background:rgba(255,0,255,0.08);text-shadow:0 0 10px var(--accent);}
+.btn:hover{border-color:var(--accent2);background:rgba(0,255,255,0.12);box-shadow:0 0 20px rgba(0,255,255,0.4);}
+.logo{box-shadow:0 0 35px var(--accent-shadow),0 0 20px rgba(0,255,255,0.3);}
+.header{border-bottom:2px solid var(--border);box-shadow:0 0 30px rgba(255,0,255,0.25);}
+.nav-link:hover{border-color:var(--accent2);background:rgba(0,255,255,0.1);box-shadow:0 0 15px rgba(0,255,255,0.3);}
+.nav-link.active{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 20px rgba(255,0,255,0.4);}
+

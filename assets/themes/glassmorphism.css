@@ -1,0 +1,40 @@
+:root{
+  --bg:#667eea;
+  --surface:rgba(255,255,255,0.15);
+  --surface2:rgba(255,255,255,0.2);
+  --text:#ffffff;
+  --muted:rgba(255,255,255,0.85);
+  --border:rgba(255,255,255,0.25);
+  --accent:#ffffff;
+  --accent2:#f0f0f0;
+  --accent-strong:rgba(255,255,255,0.95);
+  --accent-soft:rgba(255,255,255,0.2);
+  --bg-grad-1:rgba(255,255,255,0.1);
+  --bg-grad-2:rgba(255,255,255,0.08);
+  --accent-shadow:rgba(255,255,255,0.3);
+  --grid-opacity:0;
+  --grid-color:transparent;
+  --chrome-top:rgba(255,255,255,0.2);
+  --chrome-bottom:rgba(255,255,255,0.15);
+  --editor-bg:rgba(255,255,255,0.1);
+  --editor-text:#1a1a1a;
+  --editor-toolbar-bg:rgba(255,255,255,0.15);
+  --popover-bg:rgba(255,255,255,0.25);
+  --actions-bg:rgba(255,255,255,0.2);
+  --page-bg:rgba(255,255,255,0.15);
+  --page-shadow:0 8px 32px rgba(0,0,0,0.2);
+  --danger:#ff6b6b;
+  --ok:#51cf66;
+  --shadow:0 8px 32px rgba(0,0,0,0.15);
+  --radius:20px;
+}
+body{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%) fixed;}
+.panel{backdrop-filter:blur(20px);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,0.1);}
+.btn{backdrop-filter:blur(10px);border:1px solid var(--border);background:rgba(255,255,255,0.1);}
+.btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.4);}
+.header{backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-desktop{backdrop-filter:blur(20px);}
+.nav-drawer-content{backdrop-filter:blur(20px);}
+.nav-link:hover{background:rgba(255,255,255,0.15);}
+.nav-link.active{background:rgba(255,255,255,0.25);}
+

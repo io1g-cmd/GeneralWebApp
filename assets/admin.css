@@ -1,0 +1,683 @@
+/* Admin layout */
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(max(100vw, 1200px) max(100vh, 800px) at 20% -10%, var(--bg-grad-1, rgba(124,92,255,0.35)), transparent 60%),
+    radial-gradient(max(100vw, 1000px) max(100vh, 600px) at 90% 0%, var(--bg-grad-2, rgba(0,212,255,0.25)), transparent 55%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* Sci-fi grid overlay (theme controlled) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, var(--grid-color, rgba(0,229,255,0.10)) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color, rgba(0,229,255,0.10)) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: var(--grid-opacity, 0);
+  mask-image: radial-gradient(max(100vw, 1200px) max(100vh, 800px) at 35% 10%, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(14px);
+  background: linear-gradient(to bottom, var(--chrome-top, rgba(11,16,32,0.92)), var(--chrome-bottom, rgba(11,16,32,0.65)));
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner { display:flex; align-items:center; justify-content:space-between; padding: 14px 0; gap: 12px; }
+.title { display:flex; align-items:center; gap:10px; }
+.logo { width: 34px; height: 34px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+.title h1 { margin:0; font-size: 16px; }
+.title small { display:block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+.auth { max-width: 520px; margin: 40px auto; }
+.auth h2 { margin: 0 0 8px; }
+.auth p { margin: 0 0 14px; color: var(--muted); }
+
+.grid { display: grid; grid-template-columns: 340px 1fr; gap: 16px; margin: 18px 0 34px; }
+
+.selection-tabs {
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.selection-tab {
+    flex: 1;
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.selection-tab:hover {
+    background: rgba(255,255,255,0.06);
+    color: var(--text);
+}
+
+.selection-tab.active {
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 500;
+}
+
+.selection-content {
+    display: none;
+}
+
+.selection-content.active {
+    display: block;
+}
+.list { display:flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.item {
+  text-align:left;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.item:hover { border-color: rgba(0,212,255,0.55); }
+.item.active { border-color: var(--accent-strong, rgba(124,92,255,0.85)); background: var(--accent-soft, rgba(124,92,255,0.18)); }
+
+.editor-wrap { margin-top: 10px; }
+#editor { background: var(--editor-bg, #fff); border-radius: 12px; min-height: 420px; }
+.ql-toolbar.ql-snow { border-radius: 12px 12px 0 0; }
+.ql-container.ql-snow { border-radius: 0 0 12px 12px; }
+
+/* Quill theme alignment (works for both dark/light via vars) */
+.ql-toolbar.ql-snow, .ql-container.ql-snow { border-color: var(--border) !important; }
+.ql-toolbar.ql-snow { background: var(--editor-toolbar-bg, rgba(255,255,255,0.04)) !important; }
+.ql-container.ql-snow { 
+  background: var(--editor-bg, #fff) !important; 
+}
+#editor .ql-container.ql-snow {
+  background: transparent !important;
+}
+.ql-editor { 
+  color: var(--editor-text, var(--text, #0c1222)) !important; 
+  background: var(--editor-bg, #fff) !important;
+}
+/* 強制覆蓋 Quill 默認樣式，確保使用主題顏色 */
+.ql-editor,
+.ql-editor p,
+.ql-editor div,
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3,
+.ql-editor h4,
+.ql-editor h5,
+.ql-editor h6,
+.ql-editor li,
+.ql-editor span:not([style*="color"]),
+.ql-editor strong:not([style*="color"]),
+.ql-editor em:not([style*="color"]),
+.ql-editor u:not([style*="color"]),
+.ql-editor a:not([style*="color"]) {
+  color: var(--editor-text, var(--text, #0c1222)) !important;
+}
+.ql-editor p:not([style*="color"]),
+.ql-editor div:not([style*="color"]),
+.ql-editor h1:not([style*="color"]),
+.ql-editor h2:not([style*="color"]),
+.ql-editor h3:not([style*="color"]),
+.ql-editor h4:not([style*="color"]),
+.ql-editor h5:not([style*="color"]),
+.ql-editor h6:not([style*="color"]),
+.ql-editor li:not([style*="color"]),
+.ql-editor span:not([style*="color"]),
+.ql-editor strong:not([style*="color"]),
+.ql-editor em:not([style*="color"]),
+.ql-editor u:not([style*="color"]),
+.ql-editor a:not([style*="color"]) {
+  color: var(--editor-text, #0c1222) !important;
+}
+/* 底線顏色跟隨文字，避免套用錯誤顏色 */
+.ql-editor u {
+  text-decoration-color: currentColor !important;
+}
+.ql-editor.ql-blank::before { color: var(--muted, rgba(12,18,34,0.5)) !important; }
+.ql-snow .ql-stroke { stroke: var(--text) !important; }
+.ql-snow .ql-fill { fill: var(--text) !important; }
+/* 修復 underline 切換問題 */
+.ql-snow .ql-underline.ql-active,
+.ql-snow .ql-underline:hover {
+    color: var(--accent, #4285f4) !important;
+}
+.ql-snow .ql-underline.ql-active .ql-stroke {
+    stroke: var(--accent, #4285f4) !important;
+}
+.ql-snow .ql-picker { color: var(--text) !important; }
+.ql-snow .ql-picker-options {
+  background: var(--popover-bg, rgba(10,12,18,0.95));
+  border-color: var(--border);
+}
+.ql-snow .ql-picker-options .ql-picker-item { color: var(--text); }
+.ql-snow .ql-tooltip {
+  background: var(--popover-bg, rgba(10,12,18,0.95));
+  border-color: var(--border);
+  color: var(--text);
+}
+.ql-snow .ql-tooltip input[type=text] { color: var(--text); }
+
+/* Quill 對齊樣式（修復圖片對齊在編輯器中的顯示） */
+.ql-editor .ql-align-center {
+  text-align: center;
+}
+.ql-editor .ql-align-right {
+  text-align: right;
+}
+.ql-editor .ql-align-justify {
+  text-align: justify;
+}
+.ql-editor .ql-align-left {
+  text-align: left;
+}
+
+/* 圖片對齊在編輯器中的顯示（確保圖片在對齊的容器中正確顯示） */
+.ql-editor .ql-align-center img,
+.ql-editor .ql-align-right img,
+.ql-editor .ql-align-left img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 確保對齊的段落/div 正確顯示圖片 */
+.ql-editor p.ql-align-center,
+.ql-editor div.ql-align-center {
+  text-align: center;
+}
+.ql-editor p.ql-align-right,
+.ql-editor div.ql-align-right {
+  text-align: right;
+}
+.ql-editor p.ql-align-left,
+.ql-editor div.ql-align-left {
+  text-align: left;
+}
+.ql-editor p.ql-align-justify,
+.ql-editor div.ql-align-justify {
+  text-align: justify;
+}
+
+/* 按鈕嵌入樣式（編輯器） */
+.ql-editor .gwa-button-embed {
+  margin: 20px 0;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.ql-editor .gwa-button-embed .gwa-button-container {
+  margin: 20px 0;
+  display: flex;
+  cursor: pointer;
+}
+
+.ql-editor .gwa-button-embed .gwa-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  min-height: 44px;
+}
+
+.ql-editor .gwa-button-embed:hover .gwa-button {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.ql-toolbar .ql-formats button.ql-button {
+  min-width: 70px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Word-like page layout inside editor */
+.ql-container.ql-snow .ql-editor{
+  max-width: 900px;
+  margin: 18px auto;
+  padding: 44px 56px;
+  min-height: 720px;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px;
+  background: var(--page-bg, var(--editor-bg, #fff)) !important;
+  color: var(--editor-text, var(--text, #0c1222)) !important;
+  box-shadow: var(--page-shadow, 0 18px 50px rgba(0,0,0,0.22)) !important;
+}
+/* 確保所有文字元素使用主題顏色，除非有內聯樣式 */
+.ql-container.ql-snow .ql-editor p:not([style*="color"]),
+.ql-container.ql-snow .ql-editor div:not([style*="color"]),
+.ql-container.ql-snow .ql-editor h1:not([style*="color"]),
+.ql-container.ql-snow .ql-editor h2:not([style*="color"]),
+.ql-container.ql-snow .ql-editor h3:not([style*="color"]),
+.ql-container.ql-snow .ql-editor h4:not([style*="color"]),
+.ql-container.ql-snow .ql-editor h5:not([style*="color"]),
+.ql-container.ql-snow .ql-editor h6:not([style*="color"]),
+.ql-container.ql-snow .ql-editor li:not([style*="color"]),
+.ql-container.ql-snow .ql-editor span:not([style*="color"]),
+.ql-container.ql-snow .ql-editor strong:not([style*="color"]),
+.ql-container.ql-snow .ql-editor em:not([style*="color"]),
+.ql-container.ql-snow .ql-editor u:not([style*="color"]),
+.ql-container.ql-snow .ql-editor a:not([style*="color"]) {
+  color: var(--editor-text, var(--text, #0c1222)) !important;
+}
+.ql-container.ql-snow .ql-editor u {
+  text-decoration-color: currentColor !important;
+}
+
+/* 媒體插入按鈕 */
+.ql-toolbar .ql-formats button.ql-media {
+  min-width: 54px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.editor-actions {
+  display:flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  position: sticky;
+  bottom: 0;
+  background: var(--actions-bg, rgba(10,12,18,0.70));
+  backdrop-filter: blur(10px);
+}
+.editor-actions .btn { margin: 0; }
+.editor-actions .spacer { flex: 1 1 auto; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* Nav editor (tree) */
+.nav-editor { margin-top: 12px; }
+.nav-tree { list-style: none; margin: 0; padding: 0; }
+.nav-node { margin: 6px 0; }
+.nav-tree .nav-tree { margin-left: 18px; padding-left: 12px; border-left: 1px solid var(--border); }
+.nav-row{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+}
+.nav-row.active{
+  border-color: var(--accent-strong, rgba(124,92,255,0.85));
+  background: var(--accent-soft, rgba(124,92,255,0.18));
+}
+.drag{
+  cursor: grab;
+  user-select: none;
+  color: var(--muted);
+  width: 22px;
+  text-align: center;
+}
+.nav-open{
+  flex: 1 1 auto;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+.nav-open:hover{ text-decoration: underline; }
+.nav-rename{
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+.nav-add-child{
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.nav-rename-row{
+  display:flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+.nav-name{
+  flex: 1 1 auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.18);
+  color: var(--text);
+}
+
+/* Editor meta (save state / stats) */
+.editor-meta{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 6px 0;
+}
+.editor-meta .sep{ opacity: 0.65; }
+.save-state{
+  display:inline-flex;
+  align-items:center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.save-state.ok{ border-color: rgba(60, 220, 150, 0.35); }
+.save-state.dirty{ border-color: rgba(255, 192, 0, 0.45); }
+.doc-stats{ white-space: nowrap; }
+
+/* Draft banner */
+.draft-banner{
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.04);
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.draft-text{
+  color: var(--text);
+  font-size: 13px;
+}
+.draft-actions{
+  display:flex;
+  gap: 10px;
+}
+
+/* YouTube embed (in-editor) - 已更新為新的結構 */
+.ql-editor .gwa-youtube-embed {
+  margin: 20px 0;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  border: 1px solid var(--border);
+}
+
+.ql-editor .gwa-youtube-embed .youtube-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 比例 */
+  height: 0;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ql-editor .gwa-youtube-embed .youtube-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.ql-editor .gwa-youtube-embed .youtube-title-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 12px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+  color: white;
+  font-size: 12px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.ql-editor .gwa-youtube-embed:hover .youtube-title-bar {
+  opacity: 1;
+}
+
+/* Toolbar: custom text buttons */
+.ql-toolbar .ql-formats button.ql-find,
+.ql-toolbar .ql-formats button.ql-youtube,
+.ql-toolbar .ql-formats button.ql-fullscreen{
+  min-width: 54px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+/* Quill pickers label (make it more Word-like) */
+.ql-toolbar .ql-picker.ql-header .ql-picker-label::before{ content: "樣式"; }
+.ql-toolbar .ql-picker.ql-header .ql-picker-item::before{ content: "內文"; }
+.ql-toolbar .ql-picker.ql-header .ql-picker-item[data-value="1"]::before{ content: "標題 1"; }
+.ql-toolbar .ql-picker.ql-header .ql-picker-item[data-value="2"]::before{ content: "標題 2"; }
+.ql-toolbar .ql-picker.ql-header .ql-picker-item[data-value="3"]::before{ content: "標題 3"; }
+.ql-toolbar .ql-picker.ql-header .ql-picker-label[data-value="1"]::before{ content: "標題 1"; }
+.ql-toolbar .ql-picker.ql-header .ql-picker-label[data-value="2"]::before{ content: "標題 2"; }
+.ql-toolbar .ql-picker.ql-header .ql-picker-label[data-value="3"]::before{ content: "標題 3"; }
+
+/* Quill 編輯器字體（與 editorFontList 一致，選字體後即時顯示） */
+.ql-font-serif { font-family: Georgia, Times New Roman, serif; }
+.ql-font-mono, .ql-font-monospace { font-family: Monaco, Courier New, monospace; }
+.ql-font-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+.ql-font-arial { font-family: Arial, Helvetica, sans-serif; }
+.ql-font-verdana { font-family: Verdana, Geneva, sans-serif; }
+.ql-font-trebuchet-ms { font-family: "Trebuchet MS", Helvetica, sans-serif; }
+.ql-font-courier-new { font-family: "Courier New", Courier, monospace; }
+.ql-font-roboto { font-family: "Roboto", sans-serif; }
+.ql-font-open-sans { font-family: "Open Sans", sans-serif; }
+.ql-font-lato { font-family: "Lato", sans-serif; }
+.ql-font-poppins { font-family: "Poppins", sans-serif; }
+.ql-font-montserrat { font-family: "Montserrat", sans-serif; }
+.ql-font-oswald { font-family: "Oswald", sans-serif; }
+.ql-font-source-sans-3 { font-family: "Source Sans 3", sans-serif; }
+.ql-font-playfair-display { font-family: "Playfair Display", serif; }
+.ql-font-merriweather { font-family: "Merriweather", serif; }
+.ql-font-pt-sans { font-family: "PT Sans", sans-serif; }
+.ql-font-nunito { font-family: "Nunito", sans-serif; }
+.ql-font-raleway { font-family: "Raleway", sans-serif; }
+.ql-font-work-sans { font-family: "Work Sans", sans-serif; }
+.ql-font-barlow { font-family: "Barlow", sans-serif; }
+.ql-font-inter { font-family: "Inter", sans-serif; }
+.ql-font-dm-sans { font-family: "DM Sans", sans-serif; }
+.ql-font-microsoft-jhenghei { font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif; }
+.ql-font-pingfang-tc { font-family: "PingFang TC", "蘋方-繁", "Helvetica Neue", sans-serif; }
+.ql-font-noto-sans-tc { font-family: "Noto Sans TC", sans-serif; }
+.ql-font-noto-serif-tc { font-family: "Noto Serif TC", serif; }
+.ql-font-noto-sans-hk { font-family: "Noto Sans HK", sans-serif; }
+.ql-font-noto-serif-hk { font-family: "Noto Serif HK", serif; }
+.ql-font-noto-sans-sc { font-family: "Noto Sans SC", sans-serif; }
+.ql-font-noto-serif-sc { font-family: "Noto Serif SC", serif; }
+.ql-font-cwtexming { font-family: "cwTeXMing", "明體", serif; }
+
+/* Modal (find/replace) */
+.gwa-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.gwa-modal-backdrop{
+  position:absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+}
+.gwa-modal-card{
+  position: relative;
+  width: min(640px, calc(100vw - 24px));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--popover-bg, rgba(10,12,18,0.95));
+  box-shadow: 0 28px 80px rgba(0,0,0,0.45);
+  padding: 14px;
+}
+.gwa-modal-title{
+  font-weight: 700;
+  margin: 2px 0 12px;
+}
+.gwa-modal-grid{
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gwa-modal-row{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gwa-check{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  user-select:none;
+}
+.gwa-modal-status{
+  color: var(--muted);
+  font-size: 12px;
+  text-align:right;
+}
+.gwa-modal-actions{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin-top: 2px;
+}
+.gwa-modal-hint{
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* 訂單詳情模態框樣式 */
+.gwa-modal .modal-content {
+  position: relative;
+  width: min(800px, calc(100vw - 48px));
+  max-height: 90vh;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--popover-bg, rgba(10,12,18,0.95));
+  box-shadow: 0 28px 80px rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.gwa-modal .modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--chrome-top, rgba(11,16,32,0.92));
+}
+
+.gwa-modal .modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.gwa-modal .modal-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.gwa-modal .modal-close:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--accent);
+}
+
+.gwa-modal .modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* 訂單卡片樣式 */
+.order-card {
+  transition: all 0.2s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Fullscreen editor mode */
+body.editor-fullscreen .topbar{ display:none; }
+body.editor-fullscreen .grid{ grid-template-columns: 1fr; margin-top: 10px; }
+body.editor-fullscreen .grid > .panel:first-child{ display:none; }
+body.editor-fullscreen .editor-actions{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 60;
+  border-radius: 14px;
+}
+body.editor-fullscreen #editor .ql-container{ height: calc(100vh - 210px); }
+body.editor-fullscreen .ql-container.ql-snow .ql-editor{ min-height: calc(100vh - 260px); }
+
+/* YouTube 按鈕樣式增強 */
+.ql-toolbar .ql-formats button.ql-youtube {
+  min-width: 70px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+

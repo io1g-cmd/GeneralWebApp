@@ -1,0 +1,171 @@
+:root{
+  --bg:#f7f7fb;
+  --surface:#ffffff;
+  --surface2:#ffffff;
+  --text:#0c1222;
+  --muted:rgba(12,18,34,0.65);
+  --border:rgba(12,18,34,0.14);
+  --accent:#5b5cff;
+  --accent2:#00a8ff;
+  --accent-strong: rgba(91,92,255,0.70);
+  --accent-soft: rgba(91,92,255,0.10);
+  --bg-grad-1: rgba(91,92,255,0.10);
+  --bg-grad-2: rgba(0,168,255,0.08);
+  --accent-shadow: rgba(91,92,255,0.12);
+  --grid-opacity: 0;
+  --grid-color: rgba(12,18,34,0.06);
+  --chrome-top: rgba(255,255,255,0.98);
+  --chrome-bottom: rgba(255,255,255,0.95);
+  --editor-bg: #ffffff;
+  --editor-text: #0c1222;
+  --editor-toolbar-bg: rgba(12,18,34,0.03);
+  --popover-bg: rgba(255,255,255,0.98);
+  --actions-bg: rgba(255,255,255,0.78);
+  --page-bg:var(--editor-bg);
+  --page-shadow: 0 18px 60px rgba(12,18,34,0.12);
+  --danger:#e53935;
+  --ok:#1b9e5a;
+  --shadow:0 20px 60px rgba(12,18,34,0.10);
+  --radius:16px;
+}
+
+body{ color: var(--text); }
+.panel{ background: var(--surface); }
+.btn{ background: rgba(12,18,34,0.03); }
+.field input, .field select{ background: rgba(12,18,34,0.04); color: var(--text); }
+
+/* 白紙主題導航列特殊配色 */
+.header {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+  border-bottom: 1px solid rgba(12,18,34,0.12);
+  box-shadow: 0 2px 12px rgba(12,18,34,0.06);
+}
+
+.nav-desktop {
+  background: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(12,18,34,0.10);
+  box-shadow: 0 1px 8px rgba(12,18,34,0.04);
+}
+
+/* 抽屜導航背景 */
+.nav-drawer-content {
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+  border-right: 1px solid rgba(12,18,34,0.12);
+  box-shadow: 4px 0 24px rgba(12,18,34,0.15);
+}
+
+.nav-drawer-backdrop {
+  background: rgba(12,18,34,0.4);
+}
+
+/* 導航連結樣式 */
+.nav-desktop .nav-link {
+  background: rgba(12,18,34,0.04);
+  border: 1px solid rgba(12,18,34,0.08);
+  color: var(--text);
+}
+
+.nav-desktop .nav-link:hover {
+  background: rgba(91,92,255,0.08);
+  border-color: rgba(91,92,255,0.25);
+  box-shadow: 0 4px 12px rgba(91,92,255,0.15);
+}
+
+.nav-desktop .nav-link.active {
+  background: rgba(91,92,255,0.12);
+  border-color: rgba(91,92,255,0.40);
+  color: #5b5cff;
+  box-shadow: 0 2px 8px rgba(91,92,255,0.20);
+}
+
+.nav-desktop .nav-item .nav-list {
+  background: rgba(255,255,255,0.98);
+  border: 1px solid rgba(12,18,34,0.12);
+  box-shadow: 0 8px 24px rgba(12,18,34,0.12);
+}
+
+/* 抽屜內導航連結 */
+.nav-drawer .nav-link {
+  color: var(--text);
+  border-left: 3px solid transparent;
+}
+
+.nav-drawer .nav-link:hover {
+  background: rgba(91,92,255,0.06);
+  border-left-color: rgba(91,92,255,0.40);
+}
+
+.nav-drawer .nav-link.active {
+  background: rgba(91,92,255,0.12);
+  border-left-color: rgba(91,92,255,0.70);
+  color: #5b5cff;
+  font-weight: 500;
+}
+
+/* 搜尋框樣式 */
+.nav-search,
+.nav-desktop-search {
+  background: rgba(12,18,34,0.04);
+  border: 1px solid rgba(12,18,34,0.12);
+  color: var(--text);
+}
+
+.nav-search:focus,
+.nav-desktop-search:focus {
+  background: rgba(12,18,34,0.06);
+  border-color: rgba(91,92,255,0.40);
+  box-shadow: 0 0 0 3px rgba(91,92,255,0.10);
+}
+
+/* 返回按鈕 */
+.nav-back {
+  background: rgba(12,18,34,0.04);
+  border: 1px solid rgba(12,18,34,0.12);
+}
+
+.nav-back:hover {
+  background: rgba(91,92,255,0.08);
+  border-color: rgba(91,92,255,0.25);
+}
+
+/* 漢堡選單按鈕 */
+.nav-toggle span {
+  background: var(--text);
+}
+
+/* 麵包屑導航 */
+.crumbs a {
+  color: rgba(12,18,34,0.65);
+}
+
+.crumbs a:hover {
+  background: rgba(91,92,255,0.06);
+  color: #5b5cff;
+}
+
+.crumbs a::after {
+  background: rgba(91,92,255,0.40);
+}
+
+/* 結算按鈕樣式（淺色主題優化） */
+.btn-ok {
+  background: linear-gradient(135deg, var(--ok), #27ae60) !important;
+  border-color: rgba(27,158,90,0.6) !important;
+  color: white !important;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(27,158,90,0.3);
+}
+
+.btn-ok:hover {
+  background: linear-gradient(135deg, #27ae60, var(--ok)) !important;
+  border-color: rgba(27,158,90,0.8) !important;
+  box-shadow: 0 6px 16px rgba(27,158,90,0.4);
+  transform: translateY(-1px);
+}
+
+.btn-ok:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(27,158,90,0.3);
+}
+
+

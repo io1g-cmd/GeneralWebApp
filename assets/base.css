@@ -1,0 +1,81 @@
+/* Base tokens + primitives (shared by site & admin) */
+:root {
+  --bg: #0b1020;
+  --surface: rgba(255,255,255,0.06);
+  --surface2: rgba(255,255,255,0.10);
+  --text: #e8ecff;
+  --muted: rgba(232,236,255,0.75);
+  --border: rgba(255,255,255,0.14);
+  --accent: #7c5cff;
+  --accent2: #00d4ff;
+  --danger: #ff4d4f;
+  --ok: #2ecc71;
+  --shadow: 0 20px 70px rgba(0,0,0,0.35);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Microsoft JhengHei", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container { max-width: 1920px; margin: 0 auto; padding: 0 18px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.panel {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: border-color .12s ease, background .12s ease, transform .12s ease;
+}
+.btn:hover { border-color: rgba(0,212,255,0.55); background: rgba(255,255,255,0.07); transform: translateY(-1px); }
+.btn-danger { border-color: rgba(255,77,79,0.55); }
+.btn-danger:hover { border-color: rgba(255,77,79,0.85); }
+.btn-ok { border-color: rgba(46,204,113,0.55); }
+.btn-ok:hover { border-color: rgba(46,204,113,0.85); }
+
+.field { margin-bottom: 12px; }
+.field label { display:block; margin-bottom: 6px; color: var(--muted); font-size: 13px; }
+.field input, .field select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.18);
+  color: var(--text);
+}
+.field small { display:block; margin-top: 6px; color: var(--muted); font-size: 12px; }
+
+.msg {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: var(--muted);
+}
+.msg.err { border-color: rgba(255,77,79,0.55); color: #ffd1d1; }
+.msg.ok  { border-color: rgba(46,204,113,0.55); color: #d6ffe7; }
+
+
+

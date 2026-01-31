@@ -1,0 +1,33 @@
+:root{
+  /* Sci-fi neon */
+  --bg:#070a14;
+  --surface:rgba(255,255,255,0.05);
+  --surface2:rgba(255,255,255,0.08);
+  --text:#eaf0ff;
+  --muted:rgba(234,240,255,0.72);
+  --border:rgba(234,240,255,0.14);
+  --accent:#7c5cff;
+  --accent2:#00e5ff;
+  --accent-strong: rgba(124,92,255,0.90);
+  --accent-soft: rgba(124,92,255,0.20);
+  --bg-grad-1: rgba(124,92,255,0.42);
+  --bg-grad-2: rgba(0,229,255,0.28);
+  --accent-shadow: rgba(124,92,255,0.35);
+  --grid-opacity: 0.10;
+  --grid-color: rgba(0,229,255,0.12);
+  --chrome-top: rgba(7,10,20,0.92);
+  --chrome-bottom: rgba(7,10,20,0.66);
+  --editor-bg: rgba(8,10,18,0.55);
+  --editor-text: var(--text);
+  --editor-toolbar-bg: rgba(255,255,255,0.04);
+  --popover-bg: rgba(10,12,18,0.95);
+  --actions-bg: rgba(10,12,18,0.70);
+  --page-bg: rgba(10,12,18,0.68);
+  --page-shadow: 0 26px 90px rgba(0,0,0,0.55);
+  --danger:#ff4d6d;
+  --ok:#2ef2a5;
+  --shadow:0 22px 80px rgba(0,0,0,0.46);
+  --radius:16px;
+}
+
+

@@ -1,0 +1,30 @@
+RewriteEngine On
+
+# ===== 安全規則（優先執行） =====
+# 阻止直接訪問敏感目錄和檔案（必須在允許規則之前）
+RewriteRule ^app/ - [F,L]
+RewriteRule ^\.htaccess$ - [F,L]
+
+# 允許訪問 data/brand/ 目錄中的圖片文件（logo 和 icon）
+# 注意：此規則必須在阻止 data/ 規則之前
+RewriteRule ^data/brand/.*\.(png|jpg|jpeg|gif|webp|svg|ico)$ - [L]
+
+# 阻止直接訪問 data/ 目錄中的其他文件（JSON、PHP 等敏感文件）
+RewriteRule ^data/ - [F,L]
+
+# ===== 文件服務規則 =====
+# 如果請求的是實際存在的檔案或目錄，直接提供（不經過 PHP）
+# 注意：此規則不會影響前面的安全規則，因為安全規則已經使用了 [L] 標誌
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# API 請求
+RewriteRule ^api\.php$ api.php [L]
+
+# 後台請求
+RewriteRule ^admin(\.php)?$ admin.php [L]
+
+# 其他所有請求都導向 index.php
+RewriteRule ^ index.php [L]
+

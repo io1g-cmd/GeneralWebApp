@@ -1,0 +1,32 @@
+:root{
+  --bg:#0f1115;
+  --surface:rgba(255,255,255,0.05);
+  --surface2:rgba(255,255,255,0.08);
+  --text:#f1f3f5;
+  --muted:rgba(241,243,245,0.70);
+  --border:rgba(241,243,245,0.14);
+  --accent:#a0a6ff;
+  --accent2:#6ee7ff;
+  --accent-strong: rgba(160,166,255,0.85);
+  --accent-soft: rgba(160,166,255,0.16);
+  --bg-grad-1: rgba(160,166,255,0.20);
+  --bg-grad-2: rgba(110,231,255,0.16);
+  --accent-shadow: rgba(160,166,255,0.18);
+  --grid-opacity: 0.06;
+  --grid-color: rgba(110,231,255,0.10);
+  --chrome-top: rgba(15,17,21,0.92);
+  --chrome-bottom: rgba(15,17,21,0.66);
+  --editor-bg: rgba(12,14,18,0.55);
+  --editor-text: var(--text);
+  --editor-toolbar-bg: rgba(255,255,255,0.04);
+  --popover-bg: rgba(10,12,18,0.95);
+  --actions-bg: rgba(10,12,18,0.70);
+  --page-bg: rgba(12,14,18,0.66);
+  --page-shadow: 0 24px 80px rgba(0,0,0,0.52);
+  --danger:#ff6b6b;
+  --ok:#69db7c;
+  --shadow:0 22px 70px rgba(0,0,0,0.42);
+  --radius:16px;
+}
+
+
