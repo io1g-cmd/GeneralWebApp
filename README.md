@@ -1,5 +1,7 @@
 # GeneralWebApp
 
+Super fast, smooth at all
+CMS + basic shopping function
 I don't like work with SQL on simple things
 
 ## Need
